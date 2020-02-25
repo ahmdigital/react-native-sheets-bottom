@@ -1,15 +1,18 @@
 import React from 'react';
 import {StyleSheet, View, Text} from 'react-native';
 
+const text = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. \n\nUt enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.';
+
 export const Details = () => {
   return (
     <View style={Styles.container}>
       <View style={Styles.content}>
-        <Text style={Styles.paragraph}>
-          {
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. \n\nUt enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
-          }
-        </Text>
+        <Text style={Styles.paragraph}>{text}</Text>
+        <Text style={Styles.paragraph}>{text}</Text>
+        <Text style={Styles.paragraph}>{text}</Text>
+        <Text style={Styles.paragraph}>{text}</Text>
+        <Text style={Styles.paragraph}>xxx{text}</Text>
+        <Text style={Styles.paragraph}>zzz</Text>
       </View>
     </View>
   );

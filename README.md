@@ -99,6 +99,14 @@ export default class App extends Component {
 | **closeOnTouchOutside** | `bool`     | Set true if you want to close panel by touching outside  | `false` |
 | **noBar**               | `bool`     | Set true if you want to remove gray bar                  | `false` |
 
+#### Developer
+* `cd examples`
+* `npm start`
+* in another tab: `cd ios && pod install && cd ..`
+* `react-native run-ios`  or `react-native run-android`
+
+This is a fork from: https://github.com/enesozturk/rn-swipeable-panel
+
 #### ⭐️ Show Your Support
 
 Please give a ⭐️ if this project helped you!

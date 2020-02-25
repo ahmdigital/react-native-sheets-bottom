@@ -46,7 +46,7 @@ export default class App extends Component<{}, AppState> {
       fullWidth: false,
       noBackgroundOpacity: false,
       bounceAnimation: false,
-      closeOnTouchOutside: false,
+      closeOnTouchOutside: true,
       noBar: false,
       showCloseButton: false,
     };
