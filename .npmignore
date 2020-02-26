@@ -6,4 +6,5 @@ examples
 .gitignore
 webpack.config.js
 
-!examples/actualComponents/**/*.ts
+# !examples/actualComponents/**/*.*
+!examples/actualComponents
