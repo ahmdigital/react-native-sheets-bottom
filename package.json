@@ -32,7 +32,7 @@
   },
   "homepage": "https://github.com/leonardoanalista/react-native-swipeable-panel",
   "files": [
-    "components"
+    "examples/actualComponents"
   ],
   "author": "Leonardo Correa",
   "contributors": [

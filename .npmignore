@@ -1,15 +1,7 @@
 # .npmignore
 
 src
-#examples
 .babelrc
 .gitignore
 webpack.config.js
-
-# !examples/actualComponents/**/*.*
-# examples/actualComponents
-examples/__tests__
-examples/android
-examples/ios
-examples/node_modules
-examples/scenes
+examples
