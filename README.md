@@ -93,12 +93,15 @@ export default class App extends Component {
 | **closeOnTouchOutside** | `bool`     | Set true if you want to close panel by touching outside  | `false` |
 | **closeOnTouchOutside** | `bool`     | Set true if you want to close panel by touching outside  | `false` |
 | **noBar**               | `bool`     | Set true if you want to remove gray bar                  | `false` |
-| **gestureTreashold**    | `Number`   | Top bar pan gesture treashold                            | `100`   |
+| **gestureThreshold**    | `Number`   | Top bar pan gesture threshold                            | `100`   |
 
-#### TODO
-* update README
-* confgure pretty + eslint
-* create animation props
+#### TODO list since fork
+* (DONE) create `gestureThreshold` new prop
+* (In progress) Configure `Prettier` and `Eslint` so new contributors have a better dev experience
+* Update README with the new sample UI
+* Configure `Travis CI` and  `semantic-release` so we automatically release new version up on code merge into master
+* Create animation prop to customize speed and behaviour
+* Swipe to full screen mode like https://material.io/components/sheets-bottom/# (far in the roadmap)
 
 #### Developer set up
 * `cd examples`
@@ -109,6 +112,3 @@ export default class App extends Component {
 
 This is a fork from: https://github.com/enesozturk/rn-swipeable-panel - all credits to original package creator https://github.com/enesozturk
 
-#### 👏 Contributing
-
-<!-- If you have any questions or requests or want to contribute to `rn-swipeable-panel`, please write the [issue](https://github.com/enesozturk/rn-swipeable-panel/issues) or give me a Pull Request freely. -->

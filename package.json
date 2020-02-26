@@ -4,24 +4,28 @@
   "description": "Swipeable panel for react native",
   "main": "index.js",
   "keywords": [
-    "react",
+    "android",
+    "bottom-panel",
+    "bottom-up-panel",
+    "bottom-up",
+    "bottom",
+    "ios",
+    "mobile",
+    "panel",
     "react native",
     "react-native-component",
-    "mobile",
-    "ios",
-    "android",
-    "swipeable",
-    "panel",
-    "swipeable-panel",
-    "swipe-up",
+    "react",
     "swipe-down",
-    "bottom",
-    "bottom-panel",
-    "bottom-up",
-    "bottom-up-panel"
+    "swipe-up",
+    "swipeable-panel",
+    "swipeable"
   ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint": "eslint examples/**/**.js index.js --fix",
+    "prettier": "prettier --single-quote --trailing-comma es5 --print-width 120 --write examples/**/**.js index.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "travis-deploy-once": "travis-deploy-once",
+    "semantic-release": "semantic-release"
   },
   "repository": {
     "type": "git",
@@ -42,14 +46,26 @@
   ],
   "license": "ISC",
   "devDependencies": {
+    "babel-eslint": "^10.1.0",
     "eslint": "^6.8.0",
     "eslint-config-airbnb": "^18.0.1",
     "eslint-config-prettier": "^6.10.0",
+    "eslint-plugin-import": "^2.20.1",
+    "eslint-plugin-lodash": "^6.0.0",
     "eslint-plugin-prettier": "^3.1.2",
+    "eslint-plugin-react": "^7.18.3",
+    "eslint-plugin-react-hooks": "^2.5.0",
+    "eslint-plugin-react-native": "^3.8.1",
+    "eslint-plugin-sort-imports-es6-autofix": "^0.5.0",
     "metro-react-native-babel-preset": "^0.54.1",
-    "prettier": "^1.19.1"
+    "prettier": "^1.19.1",
+    "react": "16.9.0",
+    "react-native": "0.61.5",
+    "semantic-release": "^17.0.4",
+    "travis-deploy-once": "^5.0.11",
+    "prop-types": "^15.7.2"
   },
   "dependencies": {
-    "prop-types": "^15.7.2"
+    "lodash": "^4.17.15"
   }
 }
