@@ -1,6 +1,6 @@
 {
   "name": "react-native-swipeable-panel",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "description": "Swipeable panel for react native",
   "main": "index.js",
   "keywords": [
