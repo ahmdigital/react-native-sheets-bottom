@@ -18,6 +18,7 @@ import PropTypes from "prop-types";
 const FULL_HEIGHT = Dimensions.get("window").height;
 const FULL_WIDTH = Dimensions.get("window").width;
 const PANEL_HEIGHT = FULL_HEIGHT - 100;
+const GESTURE_TREASHHOLD = 100;
 
 const STATUS = {
   CLOSED: 0,
@@ -59,14 +60,16 @@ class SwipeablePanel extends Component {
         const { onlyLarge } = this.props;
         this.state.pan.flattenOffset();
 
+        console.info('>>> JSJSJJS onPanResponderRelease - gestureState.dy:', this.props.gestureTreashold, gestureState.dy);
+
         if (gestureState.dy == 0) {
           this._animateTo(this.state.status);
-        } else if (gestureState.dy < -100 || gestureState.vy < -1) {
+        } else if (gestureState.dy < -GESTURE_TREASHHOLD || gestureState.vy < -1) {
           if (this.state.status == STATUS.SMALL) this._animateTo(STATUS.LARGE);
           else {
             this._animateTo(STATUS.LARGE);
           }
-        } else if (gestureState.dy > 100 || gestureState.vy > 1) {
+        } else if (gestureState.dy > GESTURE_TREASHHOLD || gestureState.vy > 1) {
           if (this.state.status == STATUS.LARGE)
             this._animateTo(onlyLarge ? STATUS.CLOSED : STATUS.SMALL);
           else this._animateTo(0);
@@ -205,33 +208,35 @@ class SwipeablePanel extends Component {
 }
 
 SwipeablePanel.propTypes = {
-  isActive: PropTypes.bool.isRequired,
-  onClose: PropTypes.func,
-  showCloseButton: PropTypes.bool,
-  fullWidth: PropTypes.bool,
-  noBackgroundOpacity: PropTypes.bool,
-  style: PropTypes.object,
-  closeRootStyle: PropTypes.object,
+  barStyle: PropTypes.object,
   closeIconStyle: PropTypes.object,
   closeOnTouchOutside: PropTypes.bool,
+  closeRootStyle: PropTypes.object,
+  fullWidth: PropTypes.bool,
+  gestureTreashold: PropTypes.number,
+  isActive: PropTypes.bool.isRequired,
+  noBackgroundOpacity: PropTypes.bool,
+  noBar: PropTypes.bool,
+  onClose: PropTypes.func,
   onlyLarge: PropTypes.bool,
   openLarge: PropTypes.bool,
-  barStyle: PropTypes.object,
-  noBar: PropTypes.bool
+  showCloseButton: PropTypes.bool,
+  style: PropTypes.object,
 };
 
 SwipeablePanel.defaultProps = {
-  style: {},
-  onClose: () => {},
-  fullWidth: true,
-  closeRootStyle: {},
+  barStyle: {},
   closeIconStyle: {},
-  openLarge: false,
-  onlyLarge: false,
-  showCloseButton: false,
-  noBar: false,
   closeOnTouchOutside: false,
-  barStyle: {}
+  closeRootStyle: {},
+  fullWidth: true,
+  gestureTreashold: GESTURE_TREASHHOLD,
+  noBar: false,
+  onClose: () => {},
+  onlyLarge: false,
+  openLarge: false,
+  showCloseButton: false,
+  style: {},
 };
 
 const SwipeablePanelStyles = StyleSheet.create({

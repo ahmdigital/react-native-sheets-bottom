@@ -1,13 +1,19 @@
 import React from "react";
-import { View, FlatList, Text } from "react-native";
+import { View, FlatList } from "react-native";
 
 import { Styles } from "./styles";
 import { ListItem } from "./components/ListItem";
 
+const text = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. \n\nUt enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.';
+
 const ItemList = [
   { id: 1, name: "About", open: "about" },
   { id: 2, name: "Settings", open: "settings" },
-  { id: 3, name: "Configurations", open: "configurations" }
+  { id: 3, name: "Configurations", open: "configurations" },
+  { id: 4, name: text, open: "about" },
+  { id: 5, name: text, open: "about" },
+  { id: 6, name: text, open: "about" },
+  { id: 7, name: 'zzzz', open: "about" },
 ];
 
 export default class List extends React.Component {

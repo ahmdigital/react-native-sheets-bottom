@@ -7,7 +7,7 @@
  */
 
 import React, {Component} from 'react';
-import {StyleSheet} from 'react-native';
+import {StyleSheet, View, Text, ScrollView, StatusBar, KeyboardAvoidingView } from 'react-native';
 import {SafeAreaView} from 'react-navigation';
 
 import {Header} from './components/Header';
@@ -20,7 +20,8 @@ import {Configurations} from './components/Configurations';
 // import SwipeablePanel from "rn-swipeable-panel";
 
 // For developement I use
-import SwipeablePanel from './components/Panel/Panel';
+// import SwipeablePanel from './components/Panel/Panel';
+import SwipeablePanel from './actualComponents/Panel.js';
 
 type AppState = {
   content: Function;
@@ -34,6 +35,45 @@ type AppState = {
   bounceAnimation: Boolean;
   closeOnTouchOutside: Boolean;
 };
+
+
+const screenStyles =  StyleSheet.create({
+  screenView: {
+    flex: 1,
+    // backgroundColor: 'white',
+  },
+  container: {
+    flexGrow: 1,
+  },
+  safeAreaView: {
+    flex: 1,
+    // backgroundColor: 'grey',
+    backgroundColor: 'grey',
+  },
+});
+
+const Screen = ({ scrollEnabled, children, ...props }) =>
+<SafeAreaView style={screenStyles.safeAreaView}>
+  <KeyboardAvoidingView
+    behavior={'padding'}
+    keyboardVerticalOffset={50}
+    style={screenStyles.screenView}
+  >
+    <StatusBar backgroundColor="white" barStyle="dark-content" />
+    {scrollEnabled ? (
+      <ScrollView
+      contentContainerStyle={screenStyles.container}
+        keyboardDismissMode="on-drag"
+      >
+        {children}
+      </ScrollView>
+    ) : (
+      <View style={screenStyles.container}>
+        {children}
+      </View>
+    )}
+  </KeyboardAvoidingView>
+</SafeAreaView>
 
 export default class App extends Component<{}, AppState> {
   constructor(props: {}) {
@@ -117,14 +157,20 @@ export default class App extends Component<{}, AppState> {
     } = this.state;
 
     return (
-      <SafeAreaView style={Styles.container}>
-        <Header title={'Examples'} />
-        <List
-          openDefaultPanel={this.openDefaultPanel}
-          openSettingsPanel={this.openSettingsPanel}
-          openAboutPanel={this.openAboutPanel}
-          openConfigurationsPanel={this.openConfigurationsPanel}
-        />
+      <React.Fragment>
+        <Screen scrollEnabled={true}>
+
+        {/* <SafeAreaView style={Styles.container}> */}
+          <Header title={'Examples'} />
+          <List
+            openDefaultPanel={this.openDefaultPanel}
+            openSettingsPanel={this.openSettingsPanel}
+            openAboutPanel={this.openAboutPanel}
+            openConfigurationsPanel={this.openConfigurationsPanel}
+          />
+
+        </Screen>
+
         <SwipeablePanel
           fullWidth={fullWidth}
           noBar={noBar}
@@ -138,7 +184,9 @@ export default class App extends Component<{}, AppState> {
           }}>
           {this.state.content()}
         </SwipeablePanel>
-      </SafeAreaView>
+
+        {/* </SafeAreaView> */}
+      </React.Fragment>
     );
   }
 }
