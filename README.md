@@ -4,16 +4,16 @@
 
 <h1>React Native Swipeable Panel</h1>
 
-**rn-swipeable-panel** ise swipeable, easy to use bottom panel for your React Native projects. You can extend panel by swiping up, make it small or close by swiping down with pan gestures. Feel free to redesign inside of the panel.
+**react-native-swipeable-panel** ise swipeable, easy to use bottom panel for your React Native projects. You can extend panel by swiping up, make it small or close by swiping down with pan gestures. Feel free to redesign inside of the panel.
 
-[![npm version](https://img.shields.io/npm/v/rn-swipeable-panel.svg)](https://www.npmjs.com/package/rn-swipeable-panel)
+[![npm version](https://img.shields.io/npm/v/react-native-swipeable-panel.svg)](https://www.npmjs.com/package/react-native-swipeable-panel)
 
 </div>
 
 <br/>
 
 <div align="center" style="margin-bottom:1em">
-    <img src="rn-swipeable-panel.gif" width="auto" height="600"/>
+  <img src="rn-swipeable-panel.gif" width="auto" height="600"/>
 </div>
 
 <br/>
@@ -32,7 +32,7 @@ $ npm i react-native-swipeable-panel
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 
-import SwipeablePanel from "rn-swipeable-panel";
+import SwipeablePanel from "react-native-swipeable-panel";
 
 export default class App extends Component {
   constructor(props) {
@@ -95,18 +95,20 @@ export default class App extends Component {
 | **noBar**               | `bool`     | Set true if you want to remove gray bar                  | `false` |
 | **gestureTreashold**    | `Number`   | Top bar pan gesture treashold                            | `100`   |
 
-#### Developer
+#### TODO
+* update README
+* confgure pretty + eslint
+* create animation props
+
+#### Developer set up
 * `cd examples`
 * `npm start`
 * in another tab: `cd ios && pod install && cd ..`
 * `react-native run-ios`  or `react-native run-android`
 
-This is a fork from: https://github.com/enesozturk/rn-swipeable-panel
 
-#### ⭐️ Show Your Support
-
-Please give a ⭐️ if this project helped you!
+This is a fork from: https://github.com/enesozturk/rn-swipeable-panel - all credits to original package creator https://github.com/enesozturk
 
 #### 👏 Contributing
 
-If you have any questions or requests or want to contribute to `rn-swipeable-panel`, please write the [issue](https://github.com/enesozturk/rn-swipeable-panel/issues) or give me a Pull Request freely.
+<!-- If you have any questions or requests or want to contribute to `rn-swipeable-panel`, please write the [issue](https://github.com/enesozturk/rn-swipeable-panel/issues) or give me a Pull Request freely. -->
