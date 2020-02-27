@@ -1,6 +1,6 @@
 {
   "name": "react-native-swipeable-panel",
-  "version": "0.6.0",
+  "version": "0.0.0-development",
   "description": "Swipeable panel for react native",
   "main": "index.js",
   "keywords": [
@@ -59,11 +59,8 @@
     "eslint-plugin-sort-imports-es6-autofix": "^0.5.0",
     "metro-react-native-babel-preset": "^0.54.1",
     "prettier": "^1.19.1",
-    "react": "16.9.0",
-    "react-native": "0.61.5",
     "semantic-release": "^17.0.4",
-    "travis-deploy-once": "^5.0.11",
-    "prop-types": "^15.7.2"
+    "travis-deploy-once": "^5.0.11"
   },
   "dependencies": {
     "lodash": "^4.17.15"
