@@ -23,7 +23,6 @@
   "scripts": {
     "lint": "eslint examples/**/**.js index.js --fix",
     "prettier": "prettier --single-quote --trailing-comma es5 --print-width 120 --write examples/**/**.js index.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
     "travis-deploy-onceXXX": "travis-deploy-once",
     "semantic-release": "semantic-release"
   },
