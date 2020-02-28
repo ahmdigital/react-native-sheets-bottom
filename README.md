@@ -79,21 +79,21 @@ export default class App extends Component {
 
 | Properties              | Type       | Description                                              | Default |
 | ----------------------- | ---------- | -------------------------------------------------------- | ------- |
-| **isActive**            | `bool`     | Show/Hide the panel                                      | `false` |
-| **onClose**             | `Function` | Fired when the panel is closed                           |         |
-| **showCloseButton**     | `bool`     | Set true if you want to show close button                |         |
-| **fullWidth**           | `bool`     | Set true if you want to make full with panel             | `false` |
-| **openLarge**           | `bool`     | Set true if you want to open panel large by default      | `false` |
-| **onlyLarge**           | `bool`     | Set true if you want to let panel open just large mode   | `false` |
-| **noBackgroundOpacity** | `bool`     | Set true if you want to disable black background opacity | `false` |
-| **style**               | `Object`   | Use this prop to override panel style                    | `{}`    |
-| **closeRootStyle**      | `Object`   | Use this prop to override close button background style  | `{}`    |
-| **closeIconStyle**      | `Object`   | Use this prop to override close button icon style        | `{}`    |
 | **barStyle**            | `Object`   | Use this prop to override bar style                      | `{}`    |
+| **closeIconStyle**      | `Object`   | Use this prop to override close button icon style        | `{}`    |
 | **closeOnTouchOutside** | `bool`     | Set true if you want to close panel by touching outside  | `false` |
 | **closeOnTouchOutside** | `bool`     | Set true if you want to close panel by touching outside  | `false` |
-| **noBar**               | `bool`     | Set true if you want to remove gray bar                  | `false` |
+| **closeRootStyle**      | `Object`   | Use this prop to override close button background style  | `{}`    |
+| **fullWidth**           | `bool`     | Set true if you want to make full with panel             | `false` |
 | **gestureThreshold**    | `Number`   | Top bar pan gesture threshold                            | `100`   |
+| **isActive**            | `bool`     | Show/Hide the panel                                      | `false` |
+| **noBackgroundOpacity** | `bool`     | Set true if you want to disable black background opacity | `false` |
+| **noBar**               | `bool`     | Set true if you want to remove gray bar                  | `false` |
+| **onClose**             | `Function` | Fired when the panel is closed                           |         |
+| **onlyLarge**           | `bool`     | Set true if you want to let panel open just large mode   | `false` |
+| **openLarge**           | `bool`     | Set true if you want to open panel large by default      | `false` |
+| **showCloseButton**     | `bool`     | Set true if you want to show close button                |         |
+| **style**               | `Object`   | Use this prop to override panel style                    | `{}`    |
 
 #### TODO list since fork
 * (DONE) create `gestureThreshold` new prop
