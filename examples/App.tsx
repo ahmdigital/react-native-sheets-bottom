@@ -40,14 +40,12 @@ type AppState = {
 const screenStyles =  StyleSheet.create({
   screenView: {
     flex: 1,
-    // backgroundColor: 'white',
   },
   container: {
     flexGrow: 1,
   },
   safeAreaView: {
     flex: 1,
-    // backgroundColor: 'grey',
     backgroundColor: 'grey',
   },
 });

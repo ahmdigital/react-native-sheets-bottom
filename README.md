@@ -97,9 +97,9 @@ export default class App extends Component {
 
 #### TODO list since fork
 * (DONE) create `gestureThreshold` new prop
+* (DONE) Configure `Travis CI` and `semantic-release` so we automatically release new version up on code merge into master
 * (In progress) Configure `Prettier` and `Eslint` so new contributors have a better dev experience
 * Update README with the new sample UI
-* Configure `Travis CI` and  `semantic-release` so we automatically release new version up on code merge into master
 * Create animation prop to customize speed and behaviour
 * Swipe to full screen mode like https://material.io/components/sheets-bottom/# (far in the roadmap)
 
