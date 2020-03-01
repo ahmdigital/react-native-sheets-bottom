@@ -2,9 +2,11 @@
 
 <img style="margin-right:1em" src="./rn-swipeable-panel.png" width="150" height="150">
 
-<h1>React Native Swipeable Panel</h1>
+<h1>React Native Sheets Bottom</h1>
 
-**react-native-swipeable-panel** ise swipeable, easy to use bottom panel for your React Native projects. You can extend panel by swiping up, make it small or close by swiping down with pan gestures. Feel free to redesign inside of the panel.
+**react-native-sheets-bottom** ise swipeable, easy to use bottom panel for your React Native projects. You can extend panel by swiping up, make it small or close by swiping down with pan gestures. Feel free to redesign inside of the panel.
+
+NOTE: IT currentlt supports pattern the [modal-bottom-sheet](https://material.io/components/sheets-bottom/#modal-bottom-sheet). Roadmap is to support expand to full screen.
 
 [![npm version](https://img.shields.io/npm/v/react-native-swipeable-panel.svg)](https://www.npmjs.com/package/react-native-swipeable-panel)
 
@@ -21,7 +23,7 @@
 ## ⚙️ Installation
 
 ```
-$ npm i react-native-swipeable-panel
+$ npm i react-native-sheets-bottom
 ```
 
 <!-- ## Usage -->
@@ -32,7 +34,7 @@ $ npm i react-native-swipeable-panel
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 
-import SwipeablePanel from "react-native-swipeable-panel";
+import SwipeablePanel from "react-native-sheets-bottom";
 
 export default class App extends Component {
   constructor(props) {
@@ -104,7 +106,9 @@ export default class App extends Component {
 * Swipe to full screen mode like https://material.io/components/sheets-bottom/# (far in the roadmap)
 
 #### Developer set up
+* `npm i` - in root directory
 * `cd examples`
+* `npm i`
 * `npm start`
 * in another tab: `cd ios && pod install && cd ..`
 * `react-native run-ios`  or `react-native run-android`

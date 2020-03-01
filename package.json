@@ -1,7 +1,7 @@
 {
   "name": "react-native-sheets-bottom",
   "version": "0.0.0-development",
-  "description": "Swipeable panel for react native",
+  "description": "Kind of Sheets Bottom for react native",
   "main": "index.js",
   "keywords": [
     "android",
@@ -15,6 +15,7 @@
     "react native",
     "react-native-component",
     "react",
+    "sheets-bottom",
     "swipe-down",
     "swipe-up",
     "swipeable-panel",
@@ -27,12 +28,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/leonardoanalista/react-native-swipeable-panel.git"
+    "url": "https://github.com/leonardoanalista/react-native-sheets-bottom.git"
   },
   "bugs": {
-    "url": "https://github.com/leonardoanalista/react-native-swipeable-panel/issues"
+    "url": "https://github.com/leonardoanalista/react-native-sheets-bottom/issues"
   },
-  "homepage": "https://github.com/leonardoanalista/react-native-swipeable-panel",
+  "homepage": "https://github.com/leonardoanalista/react-native-sheets-bottom",
   "files": [
     "examples/actualComponents"
   ],
