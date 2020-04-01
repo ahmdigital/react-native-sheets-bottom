@@ -113,6 +113,14 @@ export default class App extends Component {
 * in another tab: `cd ios && pod install && cd ..`
 * `react-native run-ios`  or `react-native run-android`
 
+##### Commit messasages and release
+
+This repo is sutomatically release by semantic-release. The type of bump (patch, minor, major) is determined by your commit message. For exmaple: `fix: full screen display mode`. This will be automatically released as a `patch`. You don't have to decide the bump. All you have to do is write your commit message according to this patter here: 
+https://github.com/angular/angular.js/blob/master/DEVELOPERS.md#commits
+
+**Note:** the first line of your commit message is displayed in the release notes. Make sure the message is aligned with the changes you are making. 
+
+**Tip:** make one PR for one problem. If you need to fix a but, don't add a new feature at the same time. Create two PR's.
 
 This is a fork from: https://github.com/enesozturk/rn-swipeable-panel - all credits to original package creator https://github.com/enesozturk
 
