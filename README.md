@@ -120,7 +120,9 @@ https://github.com/angular/angular.js/blob/master/DEVELOPERS.md#commits
 
 **Note:** the first line of your commit message is displayed in the release notes. Make sure the message is aligned with the changes you are making. 
 
-**Tip:** make one PR for one problem. If you need to fix a but, don't add a new feature at the same time. Create two PR's.
+**Tip 1:** make one PR for one problem. If you need to fix a but, don't add a new feature at the same time. Create two PR's.
+
+**Tip 2:** take a look at this repo to help you writing commit messages(optional): https://github.com/leonardoanalista/cz-customizable
 
 This is a fork from: https://github.com/enesozturk/rn-swipeable-panel - all credits to original package creator https://github.com/enesozturk
 
