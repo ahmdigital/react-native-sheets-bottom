@@ -184,6 +184,7 @@ class SwipeablePanel extends Component {
   render() {
     const { showComponent } = this.state;
     const {
+      barStyle,
       noBackgroundOpacity,
       style,
       closeRootStyle,
@@ -218,7 +219,7 @@ class SwipeablePanel extends Component {
             style,
           ]}
           {...this.panResponder.panHandlers}>
-          {!this.props.noBar && <Bar />}
+          {!this.props.noBar && <Bar barStyle={barStyle}/>}
           {this.props.showCloseButton && (
             <Close
               rootStyle={closeRootStyle}
