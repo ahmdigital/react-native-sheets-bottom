@@ -26,6 +26,16 @@ const STATUS = {
   SMALL: 1,
 };
 
+const getLargePanelHeight = (panelLargeHeightPercentage) => (
+  !panelLargeHeightPercentage ? PANEL_HEIGHT : (FULL_HEIGHT * panelLargeHeightPercentage) / 100
+);
+
+const getSmallPanelHeight = (panelLargeHeightPercentage, panelSmallHeightPercentage) => (
+  (!panelSmallHeightPercentage || panelSmallHeightPercentage >= panelLargeHeightPercentage)
+    ? PANEL_HEIGHT / 3
+    : (FULL_HEIGHT * panelSmallHeightPercentage) / 100
+);
+
 const SwipeablePanelStyles = StyleSheet.create({
   background: {
     alignItems: 'center',
@@ -45,7 +55,6 @@ const SwipeablePanelStyles = StyleSheet.create({
     display: 'flex',
     elevation: 1,
     flexDirection: 'column',
-    height: PANEL_HEIGHT,
     position: 'absolute',
     shadowColor: '#000',
     shadowOffset: {
@@ -71,6 +80,11 @@ class SwipeablePanel extends Component {
       isActive: false,
       opacity: new Animated.Value(0),
       pan: new Animated.ValueXY({ x: 0, y: FULL_HEIGHT }),
+      panelLargeHeight: getLargePanelHeight(this.props.panelLargeHeightPercentage),
+      panelSmallHeight: getSmallPanelHeight(
+        this.props.panelLargeHeightPercentage,
+        this.props.panelSmallHeightPercentage,
+      ),
       showComponent: false,
       status: STATUS.CLOSED,
     };
@@ -153,10 +167,19 @@ class SwipeablePanel extends Component {
   animateTo = (newStatus = 0) => {
     let newY = 0;
 
-    if (newStatus === 0) {
-      newY = PANEL_HEIGHT;
-    } else if (newStatus === 1) newY = FULL_HEIGHT - 400;
-    else if (newStatus === 2) newY = 0;
+    switch (newStatus) {
+      case 0:
+        newY = this.state.panelLargeHeight;
+        break;
+      case 1:
+        newY = this.state.panelSmallHeight;
+        break;
+      case 2:
+        newY = 0;
+        break;
+      default:
+        newY = this.state.panelLargeHeight;
+    }
 
     this.setState({
       showComponent: true,
@@ -214,6 +237,7 @@ class SwipeablePanel extends Component {
         <Animated.View
           style={[
             SwipeablePanelStyles.panel,
+            { height: this.state.panelLargeHeight },
             { width: this.props.fullWidth ? FULL_WIDTH : FULL_WIDTH - 50 },
             { transform: this.state.pan.getTranslateTransform() },
             style,
@@ -263,6 +287,8 @@ SwipeablePanel.propTypes = {
   onClose: PropTypes.func,
   onlyLarge: PropTypes.bool,
   openLarge: PropTypes.bool,
+  panelLargeHeightPercentage: PropTypes.number,
+  panelSmallHeightPercentage: PropTypes.number,
   showCloseButton: PropTypes.bool,
   style: PropTypes.object,
 };
@@ -278,6 +304,8 @@ SwipeablePanel.defaultProps = {
   onClose: _.noop,
   onlyLarge: false,
   openLarge: false,
+  panelLargeHeightPercentage: null,
+  panelSmallHeightPercentage: null,
   showCloseButton: false,
   style: {},
 };
