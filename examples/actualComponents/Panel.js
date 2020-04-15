@@ -19,6 +19,7 @@ const FULL_HEIGHT = Dimensions.get('window').height;
 const FULL_WIDTH = Dimensions.get('window').width;
 const PANEL_HEIGHT = FULL_HEIGHT - 100;
 const GESTURE_THRESHOLD = 100;
+const BACKDROP_FULL_OPACITY = 0.4;
 
 const STATUS = {
   CLOSED: 0,
@@ -26,10 +27,19 @@ const STATUS = {
   SMALL: 1,
 };
 
+const getLargePanelHeight = (panelLargeHeightPercentage) => (
+  !panelLargeHeightPercentage ? PANEL_HEIGHT : (FULL_HEIGHT * panelLargeHeightPercentage) / 100
+);
+
+const getSmallPanelHeight = (panelLargeHeightPercentage, panelSmallHeightPercentage) => (
+  (!panelSmallHeightPercentage || panelSmallHeightPercentage >= panelLargeHeightPercentage)
+    ? PANEL_HEIGHT / 2
+    : (FULL_HEIGHT * panelSmallHeightPercentage) / 100
+);
+
 const SwipeablePanelStyles = StyleSheet.create({
   background: {
     alignItems: 'center',
-    backgroundColor: 'rgba(0,0,0,0.5)',
     height: FULL_HEIGHT,
     justifyContent: 'center',
     position: 'absolute',
@@ -45,7 +55,6 @@ const SwipeablePanelStyles = StyleSheet.create({
     display: 'flex',
     elevation: 1,
     flexDirection: 'column',
-    height: PANEL_HEIGHT,
     position: 'absolute',
     shadowColor: '#000',
     shadowOffset: {
@@ -67,10 +76,16 @@ class SwipeablePanel extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      backdropOpacityAnimated: new Animated.Value(0),
       canScroll: false,
       isActive: false,
       opacity: new Animated.Value(0),
       pan: new Animated.ValueXY({ x: 0, y: FULL_HEIGHT }),
+      panelLargeHeight: getLargePanelHeight(this.props.panelLargeHeightPercentage),
+      panelSmallHeight: getSmallPanelHeight(
+        this.props.panelLargeHeightPercentage,
+        this.props.panelSmallHeightPercentage,
+      ),
       showComponent: false,
       status: STATUS.CLOSED,
     };
@@ -98,6 +113,13 @@ class SwipeablePanel extends Component {
             x: 0,
             y: gestureState.dy,
           });
+          if (this.state.status === 1) {
+            const newPanelHeight = this.state.panelSmallHeight - gestureState.dy;
+            this.state.backdropOpacityAnimated.setValue(this.calculateNewBackdropOpacity(newPanelHeight));
+          } else {
+            const newPanelHeight = this.state.panelLargeHeight - gestureState.dy;
+            this.state.backdropOpacityAnimated.setValue(this.calculateNewBackdropOpacity(newPanelHeight));
+          }
         }
       },
       onPanResponderRelease: (evt, gestureState) => {
@@ -150,24 +172,42 @@ class SwipeablePanel extends Component {
     }
   }
 
+  calculateNewBackdropOpacity = (newPanelHeight) => (
+    (newPanelHeight * BACKDROP_FULL_OPACITY) / this.state.panelLargeHeight
+  );
+
   animateTo = (newStatus = 0) => {
     let newY = 0;
 
-    if (newStatus === 0) {
-      newY = PANEL_HEIGHT;
-    } else if (newStatus === 1) newY = FULL_HEIGHT - 400;
-    else if (newStatus === 2) newY = 0;
+    switch (newStatus) {
+      case 0:
+        newY = this.state.panelLargeHeight;
+        break;
+      case 1:
+        newY = this.state.panelSmallHeight;
+        break;
+      case 2:
+        newY = 0;
+        break;
+      default:
+        newY = this.state.panelLargeHeight;
+    }
 
     this.setState({
       showComponent: true,
       status: newStatus,
     });
 
-    Animated.spring(this.state.pan, {
-      friction: 25,
-      tension: 80,
-      toValue: { x: 0, y: newY },
-    }).start();
+    Animated.parallel([
+      Animated.spring(this.state.pan, {
+        friction: 25,
+        tension: 80,
+        toValue: { x: 0, y: newY },
+      }),
+      Animated.timing(this.state.backdropOpacityAnimated, {
+        toValue: this.calculateNewBackdropOpacity(this.state.panelLargeHeight - newY),
+      }),
+    ]).start();
 
     this.setState({ canScroll: newStatus === 2 });
 
@@ -185,7 +225,7 @@ class SwipeablePanel extends Component {
     const { showComponent } = this.state;
     const {
       barStyle,
-      noBackgroundOpacity,
+      nobackdropOpacity,
       style,
       closeRootStyle,
       closeIconStyle,
@@ -195,12 +235,17 @@ class SwipeablePanel extends Component {
       <Animated.View
         style={[
           SwipeablePanelStyles.background,
-          {
-            backgroundColor: noBackgroundOpacity
-              ? 'rgba(0,0,0,0)'
-              : 'rgba(0,0,0,0.5)',
-          },
         ]}>
+          <Animated.View
+          style={[
+            SwipeablePanelStyles.background,
+            {
+              backgroundColor: 'black',
+              opacity: nobackdropOpacity
+                ? 0
+                : this.state.backdropOpacityAnimated,
+            },
+          ]}/>
         {this.props.closeOnTouchOutside && (
           <TouchableWithoutFeedback onPress={() => this.props.onClose()}>
             <View
@@ -214,6 +259,7 @@ class SwipeablePanel extends Component {
         <Animated.View
           style={[
             SwipeablePanelStyles.panel,
+            { height: this.state.panelLargeHeight },
             { width: this.props.fullWidth ? FULL_WIDTH : FULL_WIDTH - 50 },
             { transform: this.state.pan.getTranslateTransform() },
             style,
@@ -258,11 +304,13 @@ SwipeablePanel.propTypes = {
   fullWidth: PropTypes.bool,
   gestureTreshold: PropTypes.number,
   isActive: PropTypes.bool.isRequired,
-  noBackgroundOpacity: PropTypes.bool,
+  nobackdropOpacity: PropTypes.bool,
   noBar: PropTypes.bool,
   onClose: PropTypes.func,
   onlyLarge: PropTypes.bool,
   openLarge: PropTypes.bool,
+  panelLargeHeightPercentage: PropTypes.number,
+  panelSmallHeightPercentage: PropTypes.number,
   showCloseButton: PropTypes.bool,
   style: PropTypes.object,
 };
@@ -278,6 +326,8 @@ SwipeablePanel.defaultProps = {
   onClose: _.noop,
   onlyLarge: false,
   openLarge: false,
+  panelLargeHeightPercentage: null,
+  panelSmallHeightPercentage: null,
   showCloseButton: false,
   style: {},
 };
