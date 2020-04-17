@@ -212,8 +212,9 @@ class SwipeablePanel extends Component {
     this.setState({ canScroll: newStatus === 2 });
 
     if (newStatus === 0) {
+      this.props.onClose();
+
       setTimeout(() => {
-        this.props.onClose();
         this.setState({
           showComponent: false,
         });
