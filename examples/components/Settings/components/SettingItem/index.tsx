@@ -1,23 +1,16 @@
+import { StyleSheet, TouchableOpacity, View, Text } from 'react-native';
 import React from 'react';
-import {StyleSheet, TouchableOpacity, View, Text} from 'react-native';
 
 type SettingItemProps = {
-  title: string;
-  item?: Object;
   isHeader?: Boolean;
   isLast?: Boolean;
   isRed?: Boolean;
+  item?: Object;
   onPress?: Function;
+  title: string;
 };
 
-export const SettingItem = ({
-  title,
-  item,
-  isHeader,
-  isLast,
-  isRed,
-  onPress,
-}: SettingItemProps) => {
+export const SettingItem = ({ title, item, isHeader, isLast, isRed, onPress }: SettingItemProps) => {
   return (
     <TouchableOpacity
       onPress={
@@ -28,15 +21,9 @@ export const SettingItem = ({
             }
       }
       activeOpacity={isHeader ? 1.0 : 0.6}
-      style={[
-        Styles.itemContainer,
-        {borderTopWidth: isHeader ? 0 : 1, borderBottomWidth: isLast ? 1 : 0},
-      ]}>
-      <View
-        style={[
-          Styles.item,
-          {justifyContent: isHeader ? 'center' : 'flex-start'},
-        ]}>
+      style={[Styles.itemContainer, { borderTopWidth: isHeader ? 0 : 1, borderBottomWidth: isLast ? 1 : 0 }]}
+    >
+      <View style={[Styles.item, { justifyContent: isHeader ? 'center' : 'flex-start' }]}>
         <Text
           style={[
             Styles.title,
@@ -44,7 +31,8 @@ export const SettingItem = ({
               color: isRed ? 'red' : 'black',
               fontWeight: isHeader ? 'bold' : 'normal',
             },
-          ]}>
+          ]}
+        >
           {title}
         </Text>
       </View>
@@ -54,21 +42,21 @@ export const SettingItem = ({
 
 const Styles = StyleSheet.create({
   itemContainer: {
-    width: '100%',
-    height: 50,
+    alignItems: 'center',
     backgroundColor: 'white',
-    borderTopColor: '#e6eced',
     borderBottomColor: '#e6eced',
+    borderTopColor: '#e6eced',
     display: 'flex',
     flexDirection: 'row',
+    height: 50,
     justifyContent: 'center',
-    alignItems: 'center',
+    width: '100%',
   },
   item: {
-    width: '90%',
+    alignItems: 'center',
     display: 'flex',
     flexDirection: 'row',
-    alignItems: 'center',
+    width: '90%',
   },
   title: {
     fontSize: 16,

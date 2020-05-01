@@ -1,10 +1,14 @@
 import { StyleSheet, View } from 'react-native';
 import React from 'react';
 
-export const Separator = ({}) => {
+type SeparatorProps = {
+  noLine: boolean;
+};
+
+export const Separator = ({ noLine }: SeparatorProps) => {
   return (
     <View style={Styles.separatorContainer}>
-      <View style={Styles.separator} />
+      <View style={[Styles.separator, { backgroundColor: noLine ? 'rgba(0,0,0,0)' : '#e2e2e2' }]} />
     </View>
   );
 };
@@ -16,7 +20,6 @@ const Styles = StyleSheet.create({
     justifyContent: 'center',
   },
   separator: {
-    backgroundColor: '#e2e2e2',
     height: 1,
     marginBottom: 5,
     marginTop: 5,

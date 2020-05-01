@@ -1,7 +1,7 @@
+import { StyleSheet, View, Text } from 'react-native';
 import React from 'react';
-import {StyleSheet, View, Text} from 'react-native';
 
-export const Title = ({title}) => {
+export const Title = ({ title }) => {
   return (
     <View style={Styles.container}>
       <Text style={Styles.title}>{title}</Text>
@@ -11,16 +11,16 @@ export const Title = ({title}) => {
 
 const Styles = StyleSheet.create({
   container: {
-    width: '100%',
-    padding: 15,
+    alignItems: 'flex-start',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
-    alignItems: 'flex-start',
+    padding: 15,
+    width: '100%',
   },
   title: {
+    color: 'black',
     fontSize: 22,
     fontWeight: '500',
-    color: 'black',
   },
 });

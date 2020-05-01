@@ -1,12 +1,12 @@
+import { StyleSheet, View, Text, Switch } from 'react-native';
 import React from 'react';
-import {StyleSheet, View, Text, Switch} from 'react-native';
 
 type ConfigurationsProps = {
   state: Object;
   changeState: Function;
 };
 
-export const Configurations = ({state, changeState}: ConfigurationsProps) => {
+export const Configurations = ({ state, changeState }: ConfigurationsProps) => {
   return (
     <React.Fragment>
       <View
@@ -17,8 +17,9 @@ export const Configurations = ({state, changeState}: ConfigurationsProps) => {
             borderBottomWidth: 1,
             borderBottomColor: 'rgba(0,0,0,0.1)',
           },
-        ]}>
-        <Text style={[{fontWeight: 'bold'}]}>Configurations</Text>
+        ]}
+      >
+        <Text style={[{ fontWeight: 'bold' }]}>Configurations</Text>
       </View>
       <View style={Styles.configurationItem}>
         <Text>Is Open</Text>
@@ -26,10 +27,7 @@ export const Configurations = ({state, changeState}: ConfigurationsProps) => {
       </View>
       <View style={Styles.configurationItem}>
         <Text>Full Width</Text>
-        <Switch
-          value={state.fullWidth}
-          onValueChange={value => changeState({...state, fullWidth: value})}
-        />
+        <Switch value={state.fullWidth} onValueChange={value => changeState({ ...state, fullWidth: value })} />
       </View>
       <View style={Styles.configurationItem}>
         <Text>Close Button</Text>
@@ -46,19 +44,15 @@ export const Configurations = ({state, changeState}: ConfigurationsProps) => {
       <View style={Styles.configurationItem}>
         <Text>No Background Opacity</Text>
         <Switch
-          value={state.noBackgroundOpacity}
-          onValueChange={value =>
-            changeState({...state, noBackgroundOpacity: value})
-          }
+          value={state.noBackdropOpacity}
+          onValueChange={value => changeState({ ...state, noBackdropOpacity: value })}
         />
       </View>
       <View style={Styles.configurationItem}>
         <Text>Close on touch outside</Text>
         <Switch
           value={state.closeOnTouchOutside}
-          onValueChange={value =>
-            changeState({...state, closeOnTouchOutside: value})
-          }
+          onValueChange={value => changeState({ ...state, closeOnTouchOutside: value })}
         />
       </View>
     </React.Fragment>
