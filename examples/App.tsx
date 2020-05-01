@@ -6,21 +6,17 @@
  * @flow
  */
 
-import React, {Component} from 'react';
-import {StyleSheet, View, Text, ScrollView, StatusBar, KeyboardAvoidingView } from 'react-native';
-import {SafeAreaView} from 'react-navigation';
+import React, { Component } from 'react';
+import { StyleSheet, View, Text, ScrollView, StatusBar, KeyboardAvoidingView } from 'react-native';
+import { SafeAreaView } from 'react-navigation';
 
-import {Header} from './components/Header';
+import { Header } from './components/Header';
 import List from './scenes/List';
 
-import {Settings} from './components/Settings';
-import {About} from './components/About';
-import {Configurations} from './components/Configurations';
+import { Settings } from './components/Settings';
+import { About } from './components/About';
+import { Configurations } from './components/Configurations';
 
-// import SwipeablePanel from "rn-swipeable-panel";
-
-// For developement I use
-// import SwipeablePanel from './components/Panel/Panel';
 import SwipeablePanel from './actualComponents/Panel.js';
 
 type AppState = {
@@ -31,13 +27,12 @@ type AppState = {
   fullWidth: Boolean;
   noBar: Boolean;
   showCloseButton: Boolean;
-  noBackgroundOpacity: Boolean;
+  noBackdropOpacity: Boolean;
   bounceAnimation: Boolean;
   closeOnTouchOutside: Boolean;
 };
 
-
-const screenStyles =  StyleSheet.create({
+const screenStyles = StyleSheet.create({
   screenView: {
     flex: 1,
   },
@@ -50,28 +45,20 @@ const screenStyles =  StyleSheet.create({
   },
 });
 
-const Screen = ({ scrollEnabled, children, ...props }) =>
-<SafeAreaView style={screenStyles.safeAreaView}>
-  <KeyboardAvoidingView
-    behavior={'padding'}
-    keyboardVerticalOffset={50}
-    style={screenStyles.screenView}
-  >
-    <StatusBar backgroundColor="white" barStyle="dark-content" />
-    {scrollEnabled ? (
-      <ScrollView
-      contentContainerStyle={screenStyles.container}
-        keyboardDismissMode="on-drag"
-      >
-        {children}
-      </ScrollView>
-    ) : (
-      <View style={screenStyles.container}>
-        {children}
-      </View>
-    )}
-  </KeyboardAvoidingView>
-</SafeAreaView>
+const Screen = ({ scrollEnabled, children, ...props }) => (
+  <SafeAreaView style={screenStyles.safeAreaView}>
+    <KeyboardAvoidingView behavior={'padding'} keyboardVerticalOffset={50} style={screenStyles.screenView}>
+      <StatusBar backgroundColor="white" barStyle="dark-content" />
+      {scrollEnabled ? (
+        <ScrollView contentContainerStyle={screenStyles.container} keyboardDismissMode="on-drag">
+          {children}
+        </ScrollView>
+      ) : (
+        <View style={screenStyles.container}>{children}</View>
+      )}
+    </KeyboardAvoidingView>
+  </SafeAreaView>
+);
 
 export default class App extends Component<{}, AppState> {
   constructor(props: {}) {
@@ -82,7 +69,7 @@ export default class App extends Component<{}, AppState> {
       openLarge: false,
       onlyLarge: false,
       fullWidth: false,
-      noBackgroundOpacity: false,
+      noBackdropOpacity: false,
       bounceAnimation: false,
       closeOnTouchOutside: true,
       noBar: false,
@@ -117,9 +104,7 @@ export default class App extends Component<{}, AppState> {
       fullWidth: false,
       showCloseButton: false,
       noBar: false,
-      content: () => (
-        <Configurations state={this.state} changeState={this.changeState} />
-      ),
+      content: () => <Configurations state={this.state} changeState={this.changeState} />,
     });
   };
 
@@ -128,7 +113,7 @@ export default class App extends Component<{}, AppState> {
   };
 
   openDefaultPanel = () => {
-    this.setState({isActive: true, openLarge: false, content: () => null});
+    this.setState({ isActive: true, openLarge: false, content: () => null });
   };
 
   closePanel = () => {
@@ -137,7 +122,7 @@ export default class App extends Component<{}, AppState> {
       fullWidth: false,
       openLarge: false,
       showCloseButton: false,
-      noBackgroundOpacity: false,
+      noBackdropOpacity: false,
       closeOnTouchOutside: false,
       noBar: false,
     });
@@ -149,7 +134,7 @@ export default class App extends Component<{}, AppState> {
       showCloseButton,
       closeOnTouchOutside,
       fullWidth,
-      noBackgroundOpacity,
+      noBackdropOpacity,
       openLarge,
       noBar,
     } = this.state;
@@ -157,8 +142,7 @@ export default class App extends Component<{}, AppState> {
     return (
       <React.Fragment>
         <Screen scrollEnabled={true}>
-
-        {/* <SafeAreaView style={Styles.container}> */}
+          {/* <SafeAreaView style={Styles.container}> */}
           <Header title={'Examples'} />
           <List
             openDefaultPanel={this.openDefaultPanel}
@@ -166,7 +150,6 @@ export default class App extends Component<{}, AppState> {
             openAboutPanel={this.openAboutPanel}
             openConfigurationsPanel={this.openConfigurationsPanel}
           />
-
         </Screen>
 
         <SwipeablePanel
@@ -174,12 +157,13 @@ export default class App extends Component<{}, AppState> {
           noBar={noBar}
           openLarge={openLarge}
           showCloseButton={showCloseButton}
-          noBackgroundOpacity={noBackgroundOpacity}
+          noBackdropOpacity={noBackdropOpacity}
           isActive={isActive}
           closeOnTouchOutside={closeOnTouchOutside}
           onClose={() => {
-            this.setState({isActive: false});
-          }}>
+            this.setState({ isActive: false });
+          }}
+        >
           {this.state.content()}
         </SwipeablePanel>
 
