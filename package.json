@@ -1,6 +1,6 @@
 {
   "name": "react-native-sheets-bottom",
-  "version": "0.0.0-development",
+  "version": "0.0.0",
   "description": "Kind of Sheets Bottom for react native",
   "main": "index.js",
   "keywords": [
