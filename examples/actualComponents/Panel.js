@@ -1,5 +1,7 @@
 import _ from 'lodash';
-import { Animated, PanResponder, ScrollView, TouchableHighlight, TouchableWithoutFeedback, View } from 'react-native';
+import {
+  Animated, PanResponder, ScrollView, TouchableHighlight, TouchableWithoutFeedback, View,
+} from 'react-native';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
@@ -17,13 +19,11 @@ const STATUS = {
   SMALL: 1,
 };
 
-const getLargePanelHeight = panelLargeHeightPercentage =>
-  !panelLargeHeightPercentage ? PANEL_HEIGHT : (FULL_HEIGHT * panelLargeHeightPercentage) / 100;
+const getLargePanelHeight = (panelLargeHeightPercentage) => (!panelLargeHeightPercentage ? PANEL_HEIGHT : (FULL_HEIGHT * panelLargeHeightPercentage) / 100);
 
-const getSmallPanelHeight = (panelLargeHeightPercentage, panelSmallHeightPercentage) =>
-  !panelSmallHeightPercentage || panelSmallHeightPercentage >= panelLargeHeightPercentage
-    ? PANEL_HEIGHT / 2
-    : (FULL_HEIGHT * panelSmallHeightPercentage) / 100;
+const getSmallPanelHeight = (panelLargeHeightPercentage, panelSmallHeightPercentage) => (!panelSmallHeightPercentage || panelSmallHeightPercentage >= panelLargeHeightPercentage
+  ? PANEL_HEIGHT / 2
+  : (FULL_HEIGHT * panelSmallHeightPercentage) / 100);
 
 class SwipeablePanel extends Component {
   constructor(props) {
@@ -37,7 +37,7 @@ class SwipeablePanel extends Component {
       panelLargeHeight: getLargePanelHeight(this.props.panelLargeHeightPercentage),
       panelSmallHeight: getSmallPanelHeight(
         this.props.panelLargeHeightPercentage,
-        this.props.panelSmallHeightPercentage
+        this.props.panelSmallHeightPercentage,
       ),
       showComponent: false,
       status: STATUS.CLOSED,
@@ -58,8 +58,8 @@ class SwipeablePanel extends Component {
       },
       onPanResponderMove: (evt, gestureState) => {
         if (
-          (this.state.status === 1 && Math.abs(this.state.pan.y._value) <= this.state.pan.y._offset) ||
-          (this.state.status === 2 && this.state.pan.y._value > -1)
+          (this.state.status === 1 && Math.abs(this.state.pan.y._value) <= this.state.pan.y._offset)
+          || (this.state.status === 2 && this.state.pan.y._value > -1)
         ) {
           this.state.pan.setValue({
             x: 0,
@@ -97,7 +97,7 @@ class SwipeablePanel extends Component {
 
   componentDidMount = () => {
     this.animatedValueY = 0;
-    this.state.pan.y.addListener(value => (this.animatedValueY = value.value));
+    this.state.pan.y.addListener((value) => (this.animatedValueY = value.value));
 
     this.setState({ isActive: this.props.isActive });
   };
@@ -105,7 +105,7 @@ class SwipeablePanel extends Component {
   componentDidUpdate(prevProps) {
     const { isActive, openLarge, onlyLarge } = this.props;
 
-    if (prevProps.isActive !== isActive) {
+    if (prevProps.isActive !== isActive || this.props.children !== prevProps.children) {
       this.setState({ isActive });
 
       if (isActive) {
@@ -116,8 +116,7 @@ class SwipeablePanel extends Component {
     }
   }
 
-  calculateNewBackdropOpacity = newPanelHeight =>
-    (newPanelHeight * BACKDROP_FULL_OPACITY) / this.state.panelLargeHeight;
+  calculateNewBackdropOpacity = (newPanelHeight) => (newPanelHeight * BACKDROP_FULL_OPACITY) / this.state.panelLargeHeight;
 
   animateTo = (newStatus = 0) => {
     let newY = 0;
@@ -167,7 +166,9 @@ class SwipeablePanel extends Component {
 
   render() {
     const { showComponent } = this.state;
-    const { barStyle, closeIconStyle, closeRootStyle, noBackdropOpacity, style } = this.props;
+    const {
+      barStyle, closeIconStyle, closeRootStyle, noBackdropOpacity, style,
+    } = this.props;
 
     return showComponent ? (
       <Animated.View style={[styles.background]}>
