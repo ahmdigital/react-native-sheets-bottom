@@ -1,0 +1,6 @@
+build-service:
+  build:
+    image: react-native-sheets-bottom
+    dockerfile: Dockerfile
+  encrypted_env_file: codeship-env.encrypted
+  cached: true
