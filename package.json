@@ -27,12 +27,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/leonardoanalista/react-native-sheets-bottom.git"
+    "url": "https://github.com/ahmdigital/react-native-sheets-bottom.git"
   },
   "bugs": {
-    "url": "https://github.com/leonardoanalista/react-native-sheets-bottom/issues"
+    "url": "https://github.com/ahmdigital/react-native-sheets-bottom/issues"
   },
-  "homepage": "https://github.com/leonardoanalista/react-native-sheets-bottom",
+  "homepage": "https://github.com/ahmdigital/react-native-sheets-bottom",
   "files": [
     "examples/actualComponents"
   ],
