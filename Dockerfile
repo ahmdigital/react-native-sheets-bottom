@@ -14,7 +14,6 @@ RUN npm i -g npm@latest
 COPY package.json package-lock.json ./
 
 RUN npm ci --quiet --no-optional && \
-  rm -f ~/.npmrc && \
   npm cache clean --force
 
 COPY .babelrc .eslintrc.js .npmignore rn-swipeable-panel.gif rn-swipeable-panel.png index.js ./
