@@ -1,0 +1,4 @@
+- name: Authenticate and release
+  service: build-service
+  tag: master
+  command: /bin/bash -c "echo //registry.npmjs.org/:_authToken=$NPM_TOKEN_AHM > ~/.npmrc && npx -p @ahmdigital/devops authenticate_and_release && rm -f ~/.npmrc"
