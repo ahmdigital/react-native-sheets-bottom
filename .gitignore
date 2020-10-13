@@ -60,5 +60,4 @@ buck-out/
 *.jsbundle
 *.aes
 *.decrypted
-
 codeship_deploy_key*
