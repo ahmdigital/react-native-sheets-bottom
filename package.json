@@ -60,5 +60,9 @@
   },
   "dependencies": {
     "lodash": "^4.17.15"
+  },
+  "engines": {
+    "node": "^12",
+    "npm": "6.14.11"
   }
 }
